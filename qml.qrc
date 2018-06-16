@@ -1,5 +1,14 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>Pages/DashBoard.qml</file>
+        <file>MainComponents/MainFooter.qml</file>
+        <file>Pages/BugReport.qml</file>
+        <file>Pages/Information.qml</file>
+        <file>Pages/Misc.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>Images/pageBackground.png</file>
+        <file>MainComponents/DashPane.qml</file>
+        <file>MainComponents/DashLabel.qml</file>
     </qresource>
 </RCC>
