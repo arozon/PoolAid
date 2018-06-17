@@ -7,8 +7,17 @@
         <file>Pages/Information.qml</file>
         <file>Pages/Misc.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>Images/pageBackground.png</file>
         <file>MainComponents/DashPane.qml</file>
         <file>MainComponents/DashLabel.qml</file>
+        <file>Images/pageBackground.png</file>
+        <file>Pages/Hints.qml</file>
+        <file>Pages/HintsPages/FirstPage.qml</file>
+        <file>MainComponents/HintPageBase.qml</file>
+        <file>Images/images.png</file>
+        <file>Images/monitor-dashboard.png</file>
+        <file>Images/monitor-dashboard-dark.png</file>
+        <file>Images/account-box-outline.png</file>
+        <file>Images/bug.png</file>
+        <file>Images/chart-line.png</file>
     </qresource>
 </RCC>

@@ -25,22 +25,27 @@ Window {
 
     //Main color properties
     property int animationColorDuration: 250
+    property int animationNumberDuration: 300
     property color borderColor: "grey"
     property color focusedColor: "steelblue"
     property color unfocusedColor: "aliceblue"
+    property color headingLabelColor: "#dd588399"
+    property color buttonColor: "steelblue"
+    property color buttonTextColor: "white"
 
 
     //Specifique components configurations
-    property int dashPanelRadius: 9
-
-
-
-
+    property int dashPanelElevation: 9
+    property int buttonElevation: 3
+    property int rectRadius: 3
 
 
 
     //Main properties
     property int footerHeight: 80
+    Material.accent: Material.BlueGrey
+    Material.primary: Material.BlueGrey
+    Material.background: buttonColor
 
     onActiveChanged: {
         if (!active) {
@@ -86,7 +91,7 @@ Window {
                 bottom: footer.top
                 left: parent.left
             }
-            source: "./Images/pageborderColor.png"
+            source: "./Images/pageBackground.png"
             opacity: 0.18
         }
         StackView {
@@ -100,6 +105,10 @@ Window {
             }
         }
 
+
+        Component.onCompleted: {
+            hintsLoader.active = true;
+        }
 
 
 
@@ -118,6 +127,18 @@ Window {
 
             onCurrentPageChanged: {
                 parent.setPage(currentPage);
+            }
+        }
+        Loader {
+            id: hintsLoader
+            height: parent.height
+            width: parent.width
+            asynchronous: true
+            active: false
+            sourceComponent: Pages.Hints {
+                onDestroyHints: {
+                    hintsLoader.active = false;
+                }
             }
         }
 

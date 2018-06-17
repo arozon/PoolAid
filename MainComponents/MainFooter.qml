@@ -35,6 +35,18 @@ RowLayout {
 
         border.width: 1
         border.color: borderColor
+        Image {
+            fillMode: Image.PreserveAspectFit
+            anchors {
+                fill: parent
+                topMargin: parent.height / 4
+                bottomMargin: parent.height / 4
+                margins: parent.width / 4
+            }
+            opacity: 0.5
+
+            source: "../Images/monitor-dashboard-dark.png"
+        }
 
         color: getColor(isSelected);
 
@@ -68,6 +80,19 @@ RowLayout {
         border.color: borderColor
 
         color: getColor(isSelected);
+
+        Image {
+            fillMode: Image.PreserveAspectFit
+            anchors {
+                fill: parent
+                topMargin: parent.height / 4
+                bottomMargin: parent.height / 4
+                margins: parent.width / 4
+            }
+            opacity: 0.5
+
+            source: "../Images/chart-line.png"
+        }
         MouseArea {
             anchors {
                 fill: parent
@@ -94,6 +119,19 @@ RowLayout {
         border.color: borderColor
 
         color: getColor(isSelected);
+
+        Image {
+            fillMode: Image.PreserveAspectFit
+            anchors {
+                fill: parent
+                topMargin: parent.height / 4
+                bottomMargin: parent.height / 4
+                margins: parent.width / 4
+            }
+            opacity: 0.5
+
+            source: "../Images/account-box-outline.png"
+        }
         MouseArea {
             anchors {
                 fill: parent
@@ -121,6 +159,19 @@ RowLayout {
         border.color: borderColor
 
         color: getColor(isSelected);
+
+        Image {
+            fillMode: Image.PreserveAspectFit
+            anchors {
+                fill: parent
+                topMargin: parent.height / 4
+                bottomMargin: parent.height / 4
+                margins: parent.width / 4
+            }
+            opacity: 0.5
+
+            source: "../Images/bug.png"
+        }
         MouseArea {
             anchors {
                 fill: parent
