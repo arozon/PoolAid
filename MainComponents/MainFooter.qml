@@ -14,7 +14,7 @@ RowLayout {
         dashboard.isSelected = (currentPage === dashboard.pageIndex);
         misc.isSelected = (currentPage === misc.pageIndex);
         about.isSelected = (currentPage === about.pageIndex);
-        bugreport.isSelected = (currentPage === bugreport.pageIndex);
+        //bugreport.isSelected = (currentPage === bugreport.pageIndex);
     }
 
 
@@ -148,43 +148,43 @@ RowLayout {
             }
         }
     }
-    Rectangle {
-        id: bugreport
-        property bool isSelected: false
-        property int pageIndex: 3
-        Layout.fillHeight: true
-        Layout.fillWidth: true
+//    Rectangle {
+//        id: bugreport
+//        property bool isSelected: false
+//        property int pageIndex: 3
+//        Layout.fillHeight: true
+//        Layout.fillWidth: true
 
-        border.width: 1
-        border.color: borderColor
+//        border.width: 1
+//        border.color: borderColor
 
-        color: getColor(isSelected);
+//        color: getColor(isSelected);
 
-        Image {
-            fillMode: Image.PreserveAspectFit
-            anchors {
-                fill: parent
-                topMargin: parent.height / 4
-                bottomMargin: parent.height / 4
-                margins: parent.width / 4
-            }
-            opacity: 0.5
+//        Image {
+//            fillMode: Image.PreserveAspectFit
+//            anchors {
+//                fill: parent
+//                topMargin: parent.height / 4
+//                bottomMargin: parent.height / 4
+//                margins: parent.width / 4
+//            }
+//            opacity: 0.5
 
-            source: "../Images/bug.png"
-        }
-        MouseArea {
-            anchors {
-                fill: parent
-            }
-            onClicked: {
-                currentPage = parent.pageIndex;
-            }
-        }
+//            source: "../Images/bug.png"
+//        }
+//        MouseArea {
+//            anchors {
+//                fill: parent
+//            }
+//            onClicked: {
+//                currentPage = parent.pageIndex;
+//            }
+//        }
 
-        Behavior on color {
-            ColorAnimation {
-                duration: animationColorDuration
-            }
-        }
-    }
+//        Behavior on color {
+//            ColorAnimation {
+//                duration: animationColorDuration
+//            }
+//        }
+//    }
 }

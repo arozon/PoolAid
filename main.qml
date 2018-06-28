@@ -13,6 +13,7 @@ Window {
     height: 812
     title: qsTr("PoolAid")
     color: "white"
+    flags: Qt.MaximizeUsingFullscreenGeometryHint;
 
 
     //Main properties
@@ -49,7 +50,7 @@ Window {
 
     onActiveChanged: {
         if (!active) {
-            Qt.quit();
+            //Qt.quit();
         }
     }
 
@@ -133,7 +134,7 @@ Window {
             id: hintsLoader
             height: parent.height
             width: parent.width
-            asynchronous: true
+            asynchronous: false
             active: false
             sourceComponent: Pages.Hints {
                 onDestroyHints: {

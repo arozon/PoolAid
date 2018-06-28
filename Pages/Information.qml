@@ -2,51 +2,82 @@ import QtQuick 2.9
 import QtQuick.Controls.Material 2.2
 import QtQuick.Controls 2.2
 import QtCharts 2.2
+import QtLocation 5.9
+import QtPositioning 5.8
 
 Item {
 
-    Label {
-        id: heading
-        height: parent.height / 4
-        color: headingLabelColor
-        text: "Amount of Calls"
-        font.pointSize: 30
-        font.family: "Verdana"
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
+    property real latitude: 0
+    property real longitude: 0
+
+    Plugin {
+        id: mapPlugin
+        name: "osm" // "mapboxgl", "esri", ...
+        // specify plugin parameters if necessary
+        // PluginParameter {
+        //     name:
+        //     value:
+        // }
+        PluginParameter {
+            name: "osm.mapping.highdpi_tiles"
+            value: "true"
         }
     }
 
-    ChartView {
-        opacity: 0.6
+    Map {
+        anchors.fill: parent
+        plugin: mapPlugin
+        center: QtPositioning.coordinate(latitude, longitude) // Oslo
+        zoomLevel: 14
+        copyrightsVisible: false
 
-//        legend.visible: false
-        antialiasing: true
-        anchors {
-            top: heading.bottom
-            right: parent.right
-            left: parent.left
-            bottom: parent.bottom
-            margins: parent.width / 10
-            topMargin: parent.height / 10
-            bottomMargin: parent.height / 10
+        onZoomLevelChanged: {
+            currentPosition.update();
+            console.log(zoomLevel);
         }
 
-        LineSeries {
-
-            name: "LineSeries"
-            XYPoint { x: 0; y: 0 }
-            XYPoint { x: 1.1; y: 2.1 }
-            XYPoint { x: 1.9; y: 3.3 }
-            XYPoint { x: 2.1; y: 2.1 }
-            XYPoint { x: 2.9; y: 4.9 }
-            XYPoint { x: 3.4; y: 3.0 }
-            XYPoint { x: 4.1; y: 3.3 }
-        }
-
+        MapCircle {
+            id: currentPosition
+                center {
+                    latitude: latitude
+                    longitude: longitude
+                }
+                radius: 300
+                opacity: 0.2
+                color: 'steelblue'
+                border.width: 3
+            }
     }
+    PositionSource {
+            id: src
+            updateInterval: 60000
+            active: true
+            preferredPositioningMethods: PositionSource.AllPositioningMethods
+
+
+            Component.onCompleted: {
+                  src.start()
+                  src.update()
+                  var supPos  = "Unknown"
+                  if (src.supportedPositioningMethods == PositionSource.NoPositioningMethods) {
+                       supPos = "NoPositioningMethods"
+                  } else if (src.supportedPositioningMethods == PositionSource.AllPositioningMethods) {
+                       supPos = "AllPositioningMethods"
+                  } else if (src.supportedPositioningMethods == PositionSource.SatellitePositioningMethods) {
+                       supPos = "SatellitePositioningMethods"
+                  } else if (src.supportedPositioningMethods == PositionSource.NonSatellitePositioningMethods) {
+                       supPos = "NonSatellitePositioningMethods"
+                  }
+                  console.log("Position Source Loaded || Supported: "+supPos+" Valid: "+valid);
+            }
+
+            onPositionChanged: {
+                var coord = src.position.coordinate;
+                console.log("Coordinate:", coord.longitude, coord.latitude);
+                longitude = coord.longitude;
+                latitude = coord.latitude;
+                console.log(src.nmeaSource)
+                active = false;
+            }
+        }
 }

@@ -1,13 +1,15 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
+import QtQuick.Controls.Material 2.2
 import "./HintsPages" as Pages
 
-Item {
+Pane {
     id: main
-    height: parent.height
-    width: parent.width
+        Material.background: "ghostwhite"
+    Material.elevation: dashPanelElevation
     state: "hidden"
     signal destroyHints();
+    signal nextHints()
     Component.onCompleted: {
         state = "visible"
         console.log(hintView.height)
@@ -49,21 +51,20 @@ Item {
 
     SwipeView {
         id: hintView
+        clip: true
         anchors {
             fill: parent
         }
         Pages.FirstPage {
             id: page1
             onContinueClicked: {
-                main.state = "hidden";
+                hintView.incrementCurrentIndex();
+                //main.state = "hidden";
                 //destroyHints();
             }
         }
-        Pages.FirstPage {
-            onContinueClicked: {
-                main.state = "hidden";
-                //destroyHints();
-            }
+        Pages.LoginPage {
+
         }
         Pages.FirstPage {
             onContinueClicked: {
